@@ -26,6 +26,8 @@ function Remove-NodeModules {
 
             #assessment            
             Write-Host ("There are {0} node_modules folders in the folder" -f $modulesArr.Length)
+            
+            $modulesArr | ForEach-Object { Write-Host $_.FullName }
 
             $parentSize = Get-DirectorySize -Path $Path
             If ($parentSize -ne 0) {
@@ -40,6 +42,7 @@ function Remove-NodeModules {
 
             $readyDelete = Read-Host -Prompt "Ready to delete?(Y/N) Default is Yes"
             
+            #delete files
             If ($readyDelete -ne "N") {
                 $modulesArr | ForEach-Object { Remove-Item -Path $_.FullName -Force -Recurse }
                 Write-Host "Deletions complete"
@@ -59,4 +62,4 @@ function Remove-NodeModules {
     }
 }
 
-Remove-NodeModules
+Remove-NodeModules -Path "C:\Users\15616\OneDrive\Documents\Fall 2023"
