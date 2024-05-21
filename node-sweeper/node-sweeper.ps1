@@ -62,4 +62,4 @@ function Remove-NodeModules {
     }
 }
 
-Remove-NodeModules -Path "C:\Users\15616\OneDrive\Documents\Fall 2023"
+Remove-NodeModules
