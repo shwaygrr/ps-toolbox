@@ -9,13 +9,10 @@ function Get-DirectorySize {
 }
 
 #path of folder to search for node modules
-$path = "C:\Users\15616\OneDrive\Desktop\Practice"
+$path = "C:\Users\15616\OneDrive\Documents\Fall 2023\Prin. of SWE\hw3"
 
 #get assessment decision
-$wantAssessment = "N"
-do {
-    $wantAssessment = Read-Host -Prompt "Would like an assessment before deletion? (Y/N)" 
-} while ($wantAssessment -ne "N" -and $wantAssessment -ne "Y")
+$wantAssessment = Read-Host -Prompt "Would like an assessment before deletion? (Y/N) Default is No" 
 
 #search and delete
 Switch ($wantAssessment) {
@@ -34,23 +31,20 @@ Switch ($wantAssessment) {
         Write-Host ("There are {0} node_modules folders in the {1} folder" -f $modulesArr.Length, $path)
         Write-Host ("node_module folders are taking up {0}% of {1} folder space" -f ($modulesSize / $parentSize * 100), $path)
 
-        $readyDelete = 'N'
+        $readyDelete = Read-Host -Prompt "Ready to delete?(Y/N) Default is Yes"
         
-        do {
-            $readyDelete = Read-Host -Prompt "Ready to delete?(Y/N)" 
-        } while ($readyDelete -ne 'N' -and $readyDelete -ne "Y")
-        
-        If ($readyDelete -eq "Y") {
-            $modulesArr | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+        If ($readyDelete -ne "N") {
+            $modulesArr | ForEach-Object { Remove-Item -Path $_.FullName -Force -Recurse }
             Write-Host "Deletions complete"
         }
+
         break
     }
 
-    "N" {
+    default {
         Get-ChildItem -Path $path -Filter "node_modules" -Recurse -Directory | 
             Where-Object { $_.Parent.FullName -notmatch "\\node_modules" } |
-            Foreach-Object { Remove-Item -Path $_.FullName -Force }
+            Foreach-Object { Remove-Item -Path $_.FullName -Force -Recurse }
         
         Write-Host "Deletions complete"
         break
