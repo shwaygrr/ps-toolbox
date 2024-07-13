@@ -1,10 +1,8 @@
 # PowerShell Toolbox
-Welcome to my PowerShell Toolbox! This repository is a collection of PowerShell scripts designed to automate some of my common tasks.
+Repository of PowerShell scripts.
 
 ## Available Tools
 - **Node Sweeper**: Clean up unnecessary `node_modules` directories in your projects.
-
-Stay tuned for more tools as I continue to learn PowerShell and add new scripts.
 
 ## How to Use
 1. Clone or download this repository or individual scripts to your local machine.
