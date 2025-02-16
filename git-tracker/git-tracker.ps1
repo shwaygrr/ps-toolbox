@@ -62,5 +62,3 @@ function Get-GitRepos {
     Get-GitRepoInfo -Path $_.Parent.FullName
   }
 }
-
-Get-GitRepos -Path "C:\Users\15616\OneDrive\Documents\Projects"
